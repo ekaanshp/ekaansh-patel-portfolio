@@ -25,6 +25,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 
 export default function Home() {
   return (
@@ -32,10 +33,14 @@ export default function Home() {
       {/* === Navigation — Fixed at top, always visible === */}
       <Navbar />
 
+      {/* === Global Animated Background ===
+       * Fixed to the viewport so it persists flawlessly across all sections */}
+      <BackgroundBeams className="fixed inset-0 z-0" />
+
       {/* === Main Content Flow ===
        * Each section has its own id for anchor-link navigation.
        * The flex-1 on main ensures it fills available viewport space. */}
-      <main className="flex-1">
+      <main className="relative z-10 flex-1">
         {/* Hero — Full viewport landing section */}
         <Hero />
 

@@ -21,9 +21,11 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
+import { Download, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BackgroundBeams } from "@/components/ui/background-beams";
+import { SparklesCore } from "@/components/ui/sparkles";
+import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import { FloatingDock } from "@/components/ui/floating-dock";
 
 /* ---------------------------------------------------------------------------
  * CUSTOM SVG ICONS — GitHub & LinkedIn
@@ -81,13 +83,7 @@ export default function Hero() {
     <section
       id="hero"
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden"
-      style={{ contain: "paint" }} /* Isolate repaints — prevents hero animation from forcing repaints elsewhere during scroll */
     >
-      {/* === Animated Background Beams (Aceternity UI) ===
-       * Positioned absolutely behind all content.
-       * The beams animate along SVG paths with gradient colors. */}
-      <BackgroundBeams className="absolute inset-0 z-0" />
-
       {/* === Content Container ===
        * z-10 ensures content renders above the background beams.
        * Staggered animation via Framer Motion variants. */}
@@ -119,15 +115,25 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* === Name with Gradient Text === */}
-        <motion.h1
-          variants={itemVariants}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4"
-        >
-          <span className="gradient-text">Ekaansh Patel</span>
-        </motion.h1>
+        {/* === Sparkles Background ===
+         * Placed behind the name and title to add subtle magic. */}
+        <div className="absolute inset-0 z-0 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_50%)]">
+          <SparklesCore
+            particleDensity={100}
+            minSize={0.5}
+            maxSize={1.5}
+            particleColor="#4b5563"
+            className="w-full h-full"
+          />
+        </div>
 
-        {/* === Title / Subtitle === */}
+        {/* === Name with Hover Effect === */}
+        <motion.div
+          variants={itemVariants}
+          className="relative z-10 w-full max-w-[800px] h-[100px] sm:h-[140px] mb-2 sm:mb-4"
+        >
+          <TextHoverEffect text="Ekaansh Patel" duration={1} />
+        </motion.div>
         <motion.p
           variants={itemVariants}
           className="text-lg sm:text-xl md:text-2xl text-slate-400 font-medium mb-8 max-w-2xl"
@@ -145,54 +151,32 @@ export default function Hero() {
           University of Michigan — Ann Arbor
         </motion.p>
 
-        {/* === Call-to-Action Buttons ===
-         * Primary: Download Resume (solid blue)
-         * Secondary: GitHub and LinkedIn (outline style)
-         *
-         * The resume button links to /resume.pdf — place your file in /public/.
-         * GitHub and LinkedIn open in new tabs.
-         * Using asChild to render Button styles on <a> elements. */}
+        {/* === Floating Dock CTA ===
+         * Replaces traditional buttons with a sleek interactive dock. */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center gap-4"
+          className="relative z-10 mt-4"
         >
-          {/* Primary CTA — Download Resume */}
-          <Button asChild className="h-11 px-6 gap-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25">
-            <a href={RESUME_PATH} download>
-              <Download className="size-4" />
-              Download Resume
-            </a>
-          </Button>
-
-          {/* Secondary CTA — GitHub */}
-          <Button variant="outline" asChild className="h-11 px-6 gap-2 border-slate-700 text-slate-300 hover:text-white hover:border-slate-500 rounded-lg font-medium transition-all duration-200">
-            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-              <GithubIcon className="size-4" />
-              GitHub
-            </a>
-          </Button>
-
-          {/* Secondary CTA — LinkedIn */}
-          <Button variant="outline" asChild className="h-11 px-6 gap-2 border-slate-700 text-slate-300 hover:text-white hover:border-slate-500 rounded-lg font-medium transition-all duration-200">
-            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
-              <LinkedinIcon className="size-4" />
-              LinkedIn
-            </a>
-          </Button>
+          <FloatingDock
+            items={[
+              {
+                title: "Resume",
+                icon: <FileText className="h-full w-full" />,
+                href: RESUME_PATH,
+              },
+              {
+                title: "GitHub",
+                icon: <GithubIcon className="h-full w-full" />,
+                href: GITHUB_URL,
+              },
+              {
+                title: "LinkedIn",
+                icon: <LinkedinIcon className="h-full w-full" />,
+                href: LINKEDIN_URL,
+              },
+            ]}
+          />
         </motion.div>
-      </motion.div>
-
-      {/* === Scroll Indicator ===
-       * Pure CSS bounce animation — no JS timer needed. */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-slate-600 flex justify-center pt-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 scroll-dot" />
-        </div>
       </motion.div>
     </section>
   );

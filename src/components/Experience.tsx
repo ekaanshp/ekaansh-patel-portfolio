@@ -21,6 +21,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Briefcase } from "lucide-react";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 /* ---------------------------------------------------------------------------
  * EXPERIENCE DATA
@@ -102,11 +103,14 @@ function ExperienceCard({
       </div>
 
       {/* === Card Content === */}
-      <div className="glass rounded-xl p-6 glow-blue-hover transition-all duration-300 hover:-translate-y-0.5">
-        {/* Date badge */}
-        <span className="inline-block text-xs font-medium text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full mb-3">
-          {experience.date}
-        </span>
+      <div className="relative glass rounded-xl p-6 transition-all duration-300 hover:-translate-y-0.5 border border-slate-800/50 bg-slate-900/40 backdrop-blur-md overflow-hidden group">
+        <GlowingEffect spread={80} glow={true} inactiveZone={0.01} />
+        
+        <div className="relative z-10">
+          {/* Date badge */}
+          <span className="inline-block text-xs font-medium text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full mb-3">
+            {experience.date}
+          </span>
 
         {/* Organization with briefcase icon */}
         <div className="flex items-center gap-2 mb-1">
@@ -146,6 +150,7 @@ function ExperienceCard({
               {tag}
             </span>
           ))}
+        </div>
         </div>
       </div>
     </motion.div>

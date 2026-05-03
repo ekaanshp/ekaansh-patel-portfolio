@@ -19,7 +19,7 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Spotlight } from "@/components/ui/spotlight";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 /* ---------------------------------------------------------------------------
  * TECH STACK DATA
@@ -72,14 +72,6 @@ export default function About() {
       ref={sectionRef}
       className="relative section-padding overflow-hidden"
     >
-      {/* === Spotlight Accent (Aceternity UI) ===
-       * Decorative spotlight beam from top-left.
-       * Sits behind all content (no z-index). */}
-      <Spotlight
-        className="-top-40 left-0 md:left-60 md:-top-20"
-        fill="#3b82f6"
-      />
-
       <div className="relative z-10 mx-auto max-w-4xl">
         {/* === Section Header === */}
         <motion.div
@@ -151,13 +143,14 @@ export default function About() {
               variants={itemVariants}
               className="
                 group relative flex items-center gap-3
-                px-4 py-3 rounded-xl
-                glass glow-blue-hover
+                px-4 py-3 rounded-xl border border-slate-800/50
+                bg-slate-900/40 backdrop-blur-md
                 cursor-default
                 transition-all duration-300
                 hover:scale-[1.03]
               "
             >
+              <GlowingEffect spread={40} glow={true} inactiveZone={0.01} />
               {/* Colored dot — matches the technology's brand color */}
               <div
                 className="w-2.5 h-2.5 rounded-full shrink-0"
