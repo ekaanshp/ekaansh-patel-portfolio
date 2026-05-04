@@ -168,3 +168,54 @@
   animation: scrollBounce 1.5s ease-in-out infinite;
   will-change: transform;
 }
+
+/* === LightRays Sweep Animations === */
+@keyframes lightRaySweep1 {
+  0%, 100% { transform: rotate(-15deg) scaleY(1.5); opacity: 0.6; }
+  50% { transform: rotate(-10deg) scaleY(1.5); opacity: 0.4; }
+}
+
+@keyframes lightRaySweep2 {
+  0%, 100% { transform: rotate(-8deg) scaleY(1.4); opacity: 0.5; }
+  50% { transform: rotate(-3deg) scaleY(1.4); opacity: 0.3; }
+}
+
+@keyframes lightRaySweep3 {
+  0%, 100% { transform: rotate(2deg) scaleY(1.3); opacity: 0.4; }
+  50% { transform: rotate(6deg) scaleY(1.3); opacity: 0.25; }
+}
+
+@keyframes lightRaySweep4 {
+  0%, 100% { transform: rotate(10deg) scaleY(1.5); opacity: 0.5; }
+  50% { transform: rotate(15deg) scaleY(1.5); opacity: 0.35; }
+}
+
+@keyframes lightRaySweep5 {
+  0%, 100% { transform: rotate(18deg) scaleY(1.6); opacity: 0.35; }
+  50% { transform: rotate(22deg) scaleY(1.6); opacity: 0.2; }
+}
+
+/* === Ambient Glow Pulse === */
+@keyframes ambientPulse {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+
+/* === BorderBeam Rotation === */
+@keyframes borderBeamRotate {
+  from { --border-beam-angle: 0deg; }
+  to { --border-beam-angle: 360deg; }
+}
+
+@property --border-beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* === AnimatedGradientText Shift === */
+@keyframes animatedGradientText {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

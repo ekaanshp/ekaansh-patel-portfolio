@@ -3,8 +3,8 @@
  *
  * Features:
  *   - Brief bio paragraph introducing Ekaansh
- *   - Aceternity Spotlight effect for visual accent
  *   - Tech stack displayed as interactive badges with colored dots
+ *   - 3D rotating IconCloud beneath the tech badges
  *   - Scroll-triggered fade-in animations via Framer Motion useInView
  *   - Responsive grid layout for tech badges
  *
@@ -20,26 +20,34 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { IconCloud } from "@/components/ui/icon-cloud";
 
 /* ---------------------------------------------------------------------------
  * TECH STACK DATA
  *
- * Each entry has a name and a color (hex) for the indicator dot.
+ * Each entry has a name, a color (hex) for the indicator dot, and a
+ * Simple Icons slug for the icon cloud.
  *
  * To add a new technology:
- *   1. Add an object with { name, color } to this array
+ *   1. Add an object with { name, color, slug } to this array
  *   2. The badge will automatically render in the grid
+ *   3. The icon will appear in the cloud
  * --------------------------------------------------------------------------- */
 const TECH_STACK = [
-  { name: "React", color: "#61dafb" },
-  { name: "Next.js", color: "#ffffff" },
-  { name: "TypeScript", color: "#3178c6" },
-  { name: "Vite", color: "#646cff" },
-  { name: "Python", color: "#3776ab" },
-  { name: "C++", color: "#00599c" },
-  { name: "Tailwind CSS", color: "#06b6d4" },
-  { name: "Node.js", color: "#339933" },
+  { name: "React", color: "#61dafb", slug: "react" },
+  { name: "Next.js", color: "#ffffff", slug: "nextdotjs" },
+  { name: "TypeScript", color: "#3178c6", slug: "typescript" },
+  { name: "Vite", color: "#646cff", slug: "vite" },
+  { name: "Python", color: "#3776ab", slug: "python" },
+  { name: "C++", color: "#00599c", slug: "cplusplus" },
+  { name: "Tailwind CSS", color: "#06b6d4", slug: "tailwindcss" },
+  { name: "Node.js", color: "#339933", slug: "nodedotjs" },
 ];
+
+/* Build icon cloud images from the tech stack slugs */
+const ICON_CLOUD_IMAGES = TECH_STACK.map(
+  (tech) => `https://cdn.simpleicons.org/${tech.slug}/${tech.color.replace("#", "")}`
+);
 
 /* ---------------------------------------------------------------------------
  * ANIMATION VARIANTS — Staggered grid entrance
@@ -161,6 +169,18 @@ export default function About() {
               </span>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* === Interactive Icon Cloud ===
+         * 3D rotating sphere of tech stack icons below the badges grid.
+         * Uses the same slugs from the TECH_STACK array. */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex justify-center mt-12"
+        >
+          <IconCloud images={ICON_CLOUD_IMAGES} />
         </motion.div>
       </div>
     </section>

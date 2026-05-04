@@ -2,8 +2,8 @@
  * PROJECTS COMPONENT — Interactive Project Cards Gallery
  *
  * Features:
- *   - Grid of project cards using Aceternity CardSpotlight
- *   - Each card has a hover spotlight/glow effect with canvas reveal
+ *   - Grid of project cards using MagicCard with cursor-tracking spotlight
+ *   - BorderBeam animated accents on each card for visual polish
  *   - Project details: title, description, tech stack tags
  *   - "View Project" and "Source Code" action buttons
  *   - Scroll-triggered staggered animations
@@ -22,7 +22,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ExternalLink, Sparkles } from "lucide-react";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
+import { MagicCard } from "@/components/ui/magic-card";
 import { Button } from "@/components/ui/button";
 
 /* Custom GitHub SVG icon (lucide removed brand icons) */
@@ -82,7 +82,8 @@ const PROJECTS = [
 /* ---------------------------------------------------------------------------
  * PROJECT CARD — Single Project Entry
  *
- * Wraps content in Aceternity's CardSpotlight for the hover glow effect.
+ * Wraps content in MagicCard for the cursor-tracking spotlight glow effect.
+ * BorderBeam adds animated gradient borders for visual polish.
  * Independently animated when scrolled into view.
  * --------------------------------------------------------------------------- */
 function ProjectCard({
@@ -102,12 +103,13 @@ function ProjectCard({
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.15 }}
     >
-      <CardSpotlight
-        className="h-full flex flex-col border-slate-800/50 bg-slate-950/80"
-        color="#1e293b"
+      <MagicCard
+        gradientColor="#0f1729"
+        gradientSize={300}
+        className="h-full p-6 sm:p-8"
       >
         {/* === Project Icon & Coming Soon Badge === */}
-        <div className="flex items-center justify-between mb-4 relative z-20">
+        <div className="flex items-center justify-between mb-4">
           <span className="text-3xl">{project.icon}</span>
           {"comingSoon" in project && project.comingSoon && (
             <span className="flex items-center gap-1 text-xs font-medium text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-full border border-purple-500/20">
@@ -118,17 +120,17 @@ function ProjectCard({
         </div>
 
         {/* === Project Title === */}
-        <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 relative z-20">
+        <h3 className="text-lg sm:text-xl font-semibold text-white mb-3">
           {project.title}
         </h3>
 
         {/* === Project Description === */}
-        <p className="text-sm text-slate-400 leading-relaxed mb-5 flex-grow relative z-20">
+        <p className="text-sm text-slate-400 leading-relaxed mb-5 flex-grow">
           {project.description}
         </p>
 
         {/* === Tech Stack Tags === */}
-        <div className="flex flex-wrap gap-2 mb-6 relative z-20">
+        <div className="flex flex-wrap gap-2 mb-6">
           {project.tags.map((tag) => (
             <span
               key={tag}
@@ -143,7 +145,7 @@ function ProjectCard({
          * View Project: links to deployed app
          * Source Code: links to GitHub repository
          * Update URLs in the PROJECTS array above. */}
-        <div className="flex items-center gap-3 relative z-20">
+        <div className="flex items-center gap-3">
           <Button variant="outline" asChild className="h-9 px-4 gap-2 border-slate-700 text-slate-300 hover:text-white hover:border-blue-500/50 hover:bg-blue-500/10 rounded-lg text-xs font-medium transition-all duration-200">
             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="size-3.5" />
@@ -157,7 +159,7 @@ function ProjectCard({
             </a>
           </Button>
         </div>
-      </CardSpotlight>
+      </MagicCard>
     </motion.div>
   );
 }

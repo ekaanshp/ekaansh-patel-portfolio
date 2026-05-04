@@ -3,10 +3,10 @@
  *
  * Features:
  *   - Full-viewport hero section
- *   - Aceternity UI BackgroundBeams for animated SVG beam effect
  *   - Circular profile photo placeholder with animated gradient border
- *   - Animated text entrance using Framer Motion
- *   - CTA buttons: Download Resume (primary), GitHub, LinkedIn (outline)
+ *   - AnimatedGradientText for the name (calm blue → cyan shift)
+ *   - Backlight glow effect on floating dock icons
+ *   - CTA buttons: Resume, GitHub, LinkedIn (via FloatingDock)
  *
  * To customize:
  *   - Replace the "EP" initials placeholder with your actual photo
@@ -21,11 +21,11 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Download, FileText } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { SparklesCore } from "@/components/ui/sparkles";
-import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import { FileText } from "lucide-react";
+import { Particles } from "@/components/ui/particles";
+import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { FloatingDock } from "@/components/ui/floating-dock";
+import { Backlight } from "@/components/ui/backlight";
 
 /* ---------------------------------------------------------------------------
  * CUSTOM SVG ICONS — GitHub & LinkedIn
@@ -84,8 +84,15 @@ export default function Hero() {
       id="hero"
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden"
     >
+      {/* === Particles Background ===
+       * Positioned as a full-viewport layer behind all content.
+       * Canvas-based — lightweight, mouse-reactive. */}
+      <Particles
+        className="absolute inset-0 z-[1]"
+      />
+
       {/* === Content Container ===
-       * z-10 ensures content renders above the background beams.
+       * z-10 ensures content renders above the particles.
        * Staggered animation via Framer Motion variants. */}
       <motion.div
         variants={containerVariants}
@@ -93,46 +100,25 @@ export default function Hero() {
         animate="visible"
         className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6"
       >
-        {/* === Profile Photo Placeholder ===
-         * Circular container with animated gradient border.
-         * Replace the inner div content with an <Image> tag for your photo.
-         *
-         * Example replacement:
-         *   import Image from "next/image";
-         *   <Image src="/profile.jpg" alt="Ekaansh Patel" fill className="object-cover" />
-         */}
-        <motion.div variants={itemVariants} className="mb-8">
-          <div className="relative group">
-            {/* Animated gradient ring — GPU composited layer for smooth spin */}
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 opacity-75 blur-sm group-hover:opacity-100 transition-opacity duration-500 animate-spin" style={{ animationDuration: "8s", willChange: "transform" }} />
-            {/* Photo container — replace placeholder with your image */}
-            <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-slate-900 border-2 border-slate-800 overflow-hidden flex items-center justify-center">
-              {/* Placeholder initials — replace with <Image> component */}
-              <span className="text-3xl sm:text-4xl font-bold gradient-text select-none">
-                EP
-              </span>
-            </div>
-          </div>
-        </motion.div>
 
-        {/* === Sparkles Background ===
-         * Placed behind the name and title to add subtle magic. */}
-        <div className="absolute inset-0 z-0 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_50%)]">
-          <SparklesCore
-            particleDensity={100}
-            minSize={0.5}
-            maxSize={1.5}
-            particleColor="#4b5563"
-            className="w-full h-full"
-          />
-        </div>
 
-        {/* === Name with Hover Effect === */}
+
+
+
+        {/* === Name with Animated Gradient Text ===
+         * Calm, slow gradient matching the site's blue/cyan/purple theme */}
         <motion.div
           variants={itemVariants}
-          className="relative z-10 w-full max-w-[800px] h-[100px] sm:h-[140px] mb-2 sm:mb-4"
+          className="relative z-10 mb-2 sm:mb-4"
         >
-          <TextHoverEffect text="Ekaansh Patel" duration={1} />
+          <AnimatedGradientText
+            speed={0.4}
+            colorFrom="#00ccffff"
+            colorTo="#d000ffff"
+            className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight"
+          >
+            Ekaansh Patel
+          </AnimatedGradientText>
         </motion.div>
         <motion.p
           variants={itemVariants}
@@ -151,31 +137,33 @@ export default function Hero() {
           University of Michigan — Ann Arbor
         </motion.p>
 
-        {/* === Floating Dock CTA ===
-         * Replaces traditional buttons with a sleek interactive dock. */}
+        {/* === Floating Dock CTA with Backlight Glow ===
+         * Backlight adds a subtle glow behind the dock icons. */}
         <motion.div
           variants={itemVariants}
           className="relative z-10 mt-4"
         >
-          <FloatingDock
-            items={[
-              {
-                title: "Resume",
-                icon: <FileText className="h-full w-full" />,
-                href: RESUME_PATH,
-              },
-              {
-                title: "GitHub",
-                icon: <GithubIcon className="h-full w-full" />,
-                href: GITHUB_URL,
-              },
-              {
-                title: "LinkedIn",
-                icon: <LinkedinIcon className="h-full w-full" />,
-                href: LINKEDIN_URL,
-              },
-            ]}
-          />
+          <Backlight blur={8}>
+            <FloatingDock
+              items={[
+                {
+                  title: "Resume",
+                  icon: <FileText className="h-full w-full" />,
+                  href: RESUME_PATH,
+                },
+                {
+                  title: "GitHub",
+                  icon: <GithubIcon className="h-full w-full" />,
+                  href: GITHUB_URL,
+                },
+                {
+                  title: "LinkedIn",
+                  icon: <LinkedinIcon className="h-full w-full" />,
+                  href: LINKEDIN_URL,
+                },
+              ]}
+            />
+          </Backlight>
         </motion.div>
       </motion.div>
     </section>

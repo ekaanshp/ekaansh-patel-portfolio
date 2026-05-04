@@ -6,11 +6,12 @@
  *
  * Section order:
  *   1. Navbar — Fixed glassmorphic navigation (always visible)
- *   2. Hero — Full-screen landing with animated background
- *   3. About — Bio and tech stack
- *   4. Experience — Timeline of roles and positions
- *   5. Projects — Interactive project card gallery
- *   6. Footer — Simple credit footer
+ *   2. LightRays — Ambient light effect (fixed background)
+ *   3. Hero — Full-screen landing with animated background
+ *   4. About — Bio and tech stack
+ *   5. Experience — Timeline of roles and positions
+ *   6. Projects — Interactive project card gallery
+ *   7. Footer — Simple credit footer
  *
  * To add a new section:
  *   1. Create a component in /components/
@@ -25,7 +26,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
-import { BackgroundBeams } from "@/components/ui/background-beams";
+import { LightRays } from "@/components/ui/light-rays";
 
 export default function Home() {
   return (
@@ -33,9 +34,10 @@ export default function Home() {
       {/* === Navigation — Fixed at top, always visible === */}
       <Navbar />
 
-      {/* === Global Animated Background ===
-       * Fixed to the viewport so it persists flawlessly across all sections */}
-      <BackgroundBeams className="fixed inset-0 z-0" />
+      {/* === Global Ambient Light Rays ===
+       * Fixed to the viewport — much lighter than BackgroundBeams.
+       * Subtle animated light beams from above for visual depth. */}
+      <LightRays className="fixed inset-0 z-0" />
 
       {/* === Main Content Flow ===
        * Each section has its own id for anchor-link navigation.
@@ -44,13 +46,13 @@ export default function Home() {
         {/* Hero — Full viewport landing section */}
         <Hero />
 
-        {/* About — Bio and tech stack badges */}
+        {/* About — Bio and tech stack badges + icon cloud */}
         <About />
 
         {/* Experience — Vertical timeline */}
         <Experience />
 
-        {/* Projects — Interactive card gallery */}
+        {/* Projects — Interactive card gallery with MagicCard */}
         <Projects />
       </main>
 
@@ -62,7 +64,7 @@ export default function Home() {
           © {new Date().getFullYear()} Ekaansh Patel. Built with{" "}
           <span className="text-slate-400">Next.js</span>,{" "}
           <span className="text-slate-400">Tailwind CSS</span>, and{" "}
-          <span className="text-slate-400">Aceternity UI</span>.
+          <span className="text-slate-400">Magic UI</span>.
         </p>
       </footer>
     </>
