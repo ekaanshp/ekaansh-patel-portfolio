@@ -7,16 +7,14 @@
  * Section order:
  *   1. Navbar — Fixed glassmorphic navigation (always visible)
  *   2. LightRays — Ambient light effect (fixed background)
- *   3. Hero — Full-screen landing with animated background
- *   4. About — Bio and tech stack
- *   5. Experience — Timeline of roles and positions
- *   6. Projects — Interactive project card gallery
- *   7. Footer — Simple credit footer
+ *   3. AuroraBackground — Fixed dark aurora glow covering the entire page
+ *   4. Hero — Full-screen landing (particles + content sit above aurora)
+ *   5. About → Experience → Projects → Footer inside the same aurora wrapper
  *
  * To add a new section:
  *   1. Create a component in /components/
  *   2. Import it here
- *   3. Add it in the desired position below
+ *   3. Add it inside the AuroraBackground wrapper below
  *   4. If it should be linkable from the navbar, add its ID to
  *      NAV_LINKS in Navbar.tsx
  * ============================================================================= */
@@ -27,6 +25,7 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import { LightRays } from "@/components/ui/light-rays";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 export default function Home() {
   return (
@@ -39,34 +38,40 @@ export default function Home() {
        * Subtle animated light beams from above for visual depth. */}
       <LightRays className="fixed inset-0 z-0" />
 
-      {/* === Main Content Flow ===
-       * Each section has its own id for anchor-link navigation.
-       * The flex-1 on main ensures it fills available viewport space. */}
-      <main className="relative z-10 flex-1">
-        {/* Hero — Full viewport landing section */}
-        <Hero />
+      {/* === Aurora wrapper — covers the ENTIRE page seamlessly ===
+       * Hero particles (z-[1]) and content (z-10) render above the aurora (z-0).
+       * This eliminates the hard visual break between Hero and the rest. */}
+      <AuroraBackground className="relative z-10 w-full flex-1" showRadialGradient={false}>
+        <main>
+          {/* Hero — particles + content sit above the aurora via z-index */}
+          <Hero />
 
-        {/* About — Bio and tech stack badges + icon cloud */}
-        <About />
+          {/* About — Bio and tech stack badges + icon cloud */}
+          <About />
 
-        {/* Experience — Vertical timeline */}
-        <Experience />
+          {/* Experience — Vertical timeline */}
+          <Experience />
 
-        {/* Projects — Interactive card gallery with MagicCard */}
-        <Projects />
-      </main>
+          {/* Projects — Interactive card gallery with MagicCard */}
+          <Projects />
 
-      {/* === Footer ===
-       * Minimal footer with copyright.
-       * You can expand this with social links, contact info, etc. */}
-      <footer className="relative z-10 border-t border-slate-800/50 py-8 px-4 text-center">
-        <p className="text-sm text-slate-500">
-          © {new Date().getFullYear()} Ekaansh Patel. Built with{" "}
-          <span className="text-slate-400">Next.js</span>,{" "}
-          <span className="text-slate-400">Tailwind CSS</span>, and{" "}
-          <span className="text-slate-400">Magic UI</span>.
-        </p>
-      </footer>
+          {/* Footer */}
+          <footer className="border-t border-slate-800/50 py-8 px-4 text-center">
+            <p className="text-sm text-slate-500">
+              © {new Date().getFullYear()} Ekaansh Patel. Built with{" "}
+              <span className="text-slate-400">Next.js</span>,{" "}
+              <span className="text-slate-400">React</span>,{" "}
+              <span className="text-slate-400">Tailwind CSS</span>,{" "}
+              <span className="text-slate-400">shadcn/ui</span>,{" "}
+              <span className="text-slate-400">Aceternity UI</span>,{" "}
+              <span className="text-slate-400">Magic UI</span>,{" "}
+              <span className="text-slate-400">Framer Motion</span>, and{" "}
+              <span className="text-slate-400">Three.js</span>.
+            </p>
+          </footer>
+        </main>
+      </AuroraBackground>
     </>
   );
 }
+

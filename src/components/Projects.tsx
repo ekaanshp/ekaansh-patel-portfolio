@@ -3,7 +3,6 @@
  *
  * Features:
  *   - Grid of project cards using MagicCard with cursor-tracking spotlight
- *   - BorderBeam animated accents on each card for visual polish
  *   - Project details: title, description, tech stack tags
  *   - "View Project" and "Source Code" action buttons
  *   - Scroll-triggered staggered animations
@@ -50,32 +49,23 @@ const GithubIcon = ({ className }: { className?: string }) => (
  * --------------------------------------------------------------------------- */
 const PROJECTS = [
   {
-    title: "F1 Telemetry Dashboard",
+    title: "F1 Race Predictor",
     description:
-      "A real-time Formula 1 telemetry visualization dashboard with custom timeline scrubbing, live driver position tracking, and historical race data analysis via API integration.",
-    tags: ["React", "Vite", "Python", "REST API"],
+      "A full-stack web application featuring a machine learning model that predicts Formula 1 race outcomes based on historical driver and session metrics.",
+
+    tags: ["React", "Vite", "Tailwind CSS", "Machine Learning", "Python", "Pandas", "NumPy", "Scikit Learn"],
     liveUrl: "#",
-    sourceUrl: "#",
+    sourceUrl: "https://github.com/kkaeshav25/WSA-WN-2026-F1-Project",
     icon: "🏎️",
   },
   {
-    title: "Drone Delivery Algorithm",
+    title: "Waiver Wire Predictor Model",
     description:
-      "An optimized delivery routing system implementing Prim's MST algorithm and Branch & Bound for the Traveling Salesman Problem, minimizing total flight distance for drone deliveries.",
-    tags: ["C++", "Prim's Algorithm", "Branch & Bound", "DSA"],
-    liveUrl: "#",
+      "A mathematical predictive model designed to evaluate NFL waiver wire prospects and project weekly fantasy football points.",
+    tags: ["Python", "Data Science", "Pandas", "NumPy", "Statistical Modeling"],
+    liveUrl: "https://www.wolverinesportsanalytics.com/projects/waiverwirefootball",
     sourceUrl: "#",
-    icon: "🚁",
-  },
-  {
-    title: "ML Web Application",
-    description:
-      "A machine learning web application showcasing predictive modeling and interactive data visualizations. Currently in development — stay tuned for updates!",
-    tags: ["Python", "TensorFlow", "Next.js", "FastAPI"],
-    liveUrl: "#",
-    sourceUrl: "#",
-    icon: "🤖",
-    comingSoon: true,
+    icon: "🏈",
   },
 ];
 
@@ -83,7 +73,6 @@ const PROJECTS = [
  * PROJECT CARD — Single Project Entry
  *
  * Wraps content in MagicCard for the cursor-tracking spotlight glow effect.
- * BorderBeam adds animated gradient borders for visual polish.
  * Independently animated when scrolled into view.
  * --------------------------------------------------------------------------- */
 function ProjectCard({
@@ -104,19 +93,13 @@ function ProjectCard({
       transition={{ duration: 0.6, delay: index * 0.15 }}
     >
       <MagicCard
-        gradientColor="#0f1729"
+        gradientColor="#1b2b4fff"
         gradientSize={300}
         className="h-full p-6 sm:p-8"
       >
-        {/* === Project Icon & Coming Soon Badge === */}
+        {/* === Project Icon */}
         <div className="flex items-center justify-between mb-4">
           <span className="text-3xl">{project.icon}</span>
-          {"comingSoon" in project && project.comingSoon && (
-            <span className="flex items-center gap-1 text-xs font-medium text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-full border border-purple-500/20">
-              <Sparkles className="size-3" />
-              Coming Soon
-            </span>
-          )}
         </div>
 
         {/* === Project Title === */}
@@ -192,7 +175,7 @@ export default function Projects() {
         </motion.div>
 
         {/* === Project Cards Grid === */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {PROJECTS.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}

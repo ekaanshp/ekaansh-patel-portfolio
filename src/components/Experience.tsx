@@ -38,30 +38,29 @@ const EXPERIENCES = [
   {
     title: "Teleoperations Software Subteam",
     organization: "Michigan Mars Rover Team (MRover)",
-    date: "Sep 2024 – Present",
+    date: "Sep 2025 – Present",
     description:
-      "Contributing to the teleoperations software that enables remote control of the team's Mars rover for the University Rover Challenge (URC).",
+      "Contributing to the teleoperations software that acts as the web-based basestation for the team's Mars rover for the University Rover Challenge (URC).",
     highlights: [
-      "Implemented and iterated on UI/UX designs for the rover control interface",
-      "Developed responsive dashboard components for real-time telemetry display",
-      "Wrote comprehensive tests to ensure reliability of teleoperations features",
-      "Collaborated with cross-functional sub-teams (mechanical, electrical, autonomy)",
+      "Designed and implemented responsive dashboard components for real-time telemetry display",
+      "Wrote comprehensive software tests to ensure the reliability of critical teleoperations features",
+      "Collaborated with other subteams like the science payload sub-team to develop and integrate a camera color input system",
     ],
-    tags: ["React", "TypeScript", "UI/UX", "Testing"],
+    tags: ["Python", "C++", "HTML", "JavaScript"],
   },
   {
     title: "Data Analyst / Research Member",
     organization: "Wolverine Sports Analytics",
-    date: "Jan 2024 – Present",
+    date: "Sep 2025 – Present",
     description:
-      "Building predictive models and data pipelines for fantasy football analytics and sports performance research.",
+      "Building predictive models and data pipelines for sports analytics.",
     highlights: [
-      "Developed predictive models for fantasy football player performance using Python",
-      "Built data pipelines to ingest and clean large-scale sports datasets",
-      "Applied statistical analysis and machine learning techniques for player evaluation",
-      "Presented findings and visualizations to the team for strategic decision-making",
+      "Engineered data pipelines to ingest, clean, and analyze large-scale sports datasets",
+      "Developed predictive models using Python to evaluate fantasy football player performance",
+      "Trained machine learning models on historical FastF1 API session data to forecast driver performance and race outcomes",
+      "Developed a React-based dashboard to visualize complex race predictions and driver session metrics",
     ],
-    tags: ["Python", "Data Science", "Machine Learning", "Statistics"],
+    tags: ["Python", "Data Science", "Machine Learning", "React", "Vite", "Tailwind CSS"],
   },
 ];
 

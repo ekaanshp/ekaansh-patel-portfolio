@@ -89,7 +89,7 @@ export default function About() {
           className="mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-2">
-            About <span className="gradient-text">Me</span>
+            <span className="gradient-text">About Me</span>
           </h2>
           {/* Accent underline bar */}
           <div className="w-16 h-1 bg-blue-500 rounded-full" />
@@ -105,21 +105,16 @@ export default function About() {
           className="space-y-4 mb-16"
         >
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-            I&apos;m a Computer Science student at the{" "}
-            <span className="text-blue-400 font-medium">
-              University of Michigan
-            </span>
-            , passionate about building modern web applications, data-driven
-            systems, and intuitive user experiences. I thrive at the intersection
-            of software engineering and design, crafting tools that are both
-            powerful and delightful to use.
+            I am a Computer Science student at the University of Michigan, Ann Arbor,
+            passionate about full stack development and building modern data-driven web applications. 
+            I thrive at the intersection of software engineering and design, creating useful 
+            applications with great user experience.
           </p>
           <p className="text-base sm:text-lg text-slate-400 leading-relaxed">
-            From developing telemetry dashboards for F1 racing data to building
-            teleoperations interfaces for Mars rovers, I love tackling complex
-            engineering challenges. When I&apos;m not coding, you&apos;ll find me
-            exploring machine learning, contributing to sports analytics
-            research, or optimizing algorithms for real-world problems.
+            From developing visual dashboards for F1 race predictions in Wolverine Sports Analytics to building
+            teleoperations interfaces for Michigan Mars Rover Team, I love tackling complex
+            technical challenges. When I am not coding, you will find me watching a lot of Detroit sports 
+            or hanging out with friends.
           </p>
         </motion.div>
 

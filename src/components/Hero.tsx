@@ -49,7 +49,7 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
  * CONFIGURATION — Update these with your real links
  * --------------------------------------------------------------------------- */
 const GITHUB_URL = "https://github.com/ekaanshp";
-const LINKEDIN_URL = "https://linkedin.com/in/ekaanshp";
+const LINKEDIN_URL = "https://www.linkedin.com/in/ekaansh-patel-b753b7360/";
 const RESUME_PATH = "/resume.pdf";
 
 /* ---------------------------------------------------------------------------
@@ -128,14 +128,7 @@ export default function Hero() {
           <span className="text-blue-400">&amp;</span> Software Engineer
         </motion.p>
 
-        {/* === University Badge === */}
-        <motion.p
-          variants={itemVariants}
-          className="text-sm sm:text-base text-slate-500 mb-10 flex items-center gap-2"
-        >
-          <span className="inline-block w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-          University of Michigan — Ann Arbor
-        </motion.p>
+
 
         {/* === Floating Dock CTA with Backlight Glow ===
          * Backlight adds a subtle glow behind the dock icons. */}

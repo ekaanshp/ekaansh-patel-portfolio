@@ -72,7 +72,7 @@ function hexToRgb(hex: string): [number, number, number] {
 
 export function Particles({
   quantity = 200,
-  color = "#0006abff",
+  color = "#1100ffff",
   ease = 40,
   size = 0.5,
   staticity = 30,

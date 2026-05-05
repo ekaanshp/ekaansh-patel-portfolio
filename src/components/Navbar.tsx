@@ -14,6 +14,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 /* ---------------------------------------------------------------------------
@@ -74,18 +75,25 @@ export default function Navbar() {
   return (
     <nav
       id="navbar"
-      className={`
-        fixed top-0 left-0 right-0 z-50
-        transition-all duration-300 ease-in-out
-        ${
-          scrolled
-            ? "glass-navbar shadow-lg shadow-black/20"
-            : "bg-transparent"
-        }
-      `}
+      className="fixed left-0 right-0 z-50 flex justify-center pointer-events-none"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+      <motion.div
+        layout
+        initial={false}
+        className={`
+          pointer-events-auto
+          transition-all duration-500 ease-in-out
+          ${
+            scrolled
+              ? "mt-4 w-[90%] max-w-2xl rounded-full glass-navbar border border-white/10 px-6 shadow-2xl shadow-blue-500/10"
+              : "mt-0 w-full max-w-none bg-transparent px-4 sm:px-6 lg:px-8"
+          }
+        `}
+        style={{
+          willChange: "transform, opacity",
+        }}
+      >
+        <div className="flex h-14 items-center justify-between">
           {/* === Logo / Name === */}
           <a
             href="#"
@@ -130,34 +138,37 @@ export default function Navbar() {
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </div>
 
-      {/* === Mobile Menu Overlay === */}
-      <div
-        className={`
-          md:hidden
-          transition-all duration-300 ease-in-out overflow-hidden
-          ${mobileMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"}
-        `}
-      >
-        <div className="glass-navbar px-4 pb-4 pt-2 space-y-2">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="
-                block py-2 px-3 rounded-lg
-                text-sm font-medium text-slate-300
-                hover:text-white hover:bg-white/5
-                transition-all duration-200
-              "
+        {/* === Mobile Menu Overlay === */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="md:hidden overflow-hidden"
             >
-              {link.label}
-            </a>
-          ))}
-        </div>
-      </div>
+              <div className="pb-4 pt-2 space-y-2">
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="
+                      block py-2 px-3 rounded-lg
+                      text-sm font-medium text-slate-300
+                      hover:text-white hover:bg-white/5
+                      transition-all duration-200
+                    "
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </nav>
   );
 }

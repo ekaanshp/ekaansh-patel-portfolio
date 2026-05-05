@@ -103,10 +103,9 @@
 
 /* Stronger glassmorphism for the navbar */
 .glass-navbar {
-  background: rgba(3, 7, 18, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  background: rgba(3, 7, 18, 0.4);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
 }
 
 /* Gradient text — blue → purple → cyan gradient on text */
@@ -201,21 +200,25 @@
   50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
 }
 
-/* === BorderBeam Rotation === */
-@keyframes borderBeamRotate {
-  from { --border-beam-angle: 0deg; }
-  to { --border-beam-angle: 360deg; }
-}
-
-@property --border-beam-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
 /* === AnimatedGradientText Shift === */
 @keyframes animatedGradientText {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+/* === Aurora Background Animations === */
+@keyframes auroraRotate1 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes auroraRotate2 {
+  from { transform: rotate(180deg); }
+  to   { transform: rotate(-180deg); }
+}
+
+@keyframes auroraPulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.08); }
 }
