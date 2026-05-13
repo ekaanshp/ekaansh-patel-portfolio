@@ -64,7 +64,7 @@ const PROJECTS = [
       "A mathematical predictive model designed to evaluate NFL waiver wire prospects and project weekly fantasy football points.",
     tags: ["Python", "Data Science", "Pandas", "NumPy", "Statistical Modeling"],
     liveUrl: "https://www.wolverinesportsanalytics.com/projects/waiverwirefootball",
-    sourceUrl: "#",
+    sourceUrl: "https://github.com/kkaeshav25/Fantasy-Football-Waiver-Wire-Model",
     icon: "🏈",
   },
 ];
