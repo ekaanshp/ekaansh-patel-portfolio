@@ -49,8 +49,8 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
  * CONFIGURATION — Update these with your real links
  * --------------------------------------------------------------------------- */
 const GITHUB_URL = "https://github.com/ekaanshp";
-const LINKEDIN_URL = "https://www.linkedin.com/in/ekaansh-patel-b753b7360/";
-const RESUME_PATH = "/resume.pdf";
+const LINKEDIN_URL = "https://www.linkedin.com/in/ekaansh-patel/";
+const RESUME_PATH = "./Ekaansh_Patel_Resume.pdf";
 
 /* ---------------------------------------------------------------------------
  * ANIMATION VARIANTS — Staggered fade-in from bottom

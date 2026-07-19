@@ -67,6 +67,15 @@ const PROJECTS = [
     sourceUrl: "https://github.com/kkaeshav25/Fantasy-Football-Waiver-Wire-Model",
     icon: "🏈",
   },
+  {
+    title: "F1 24-0 Game",
+    description:
+      "A full-stack, arcade-style Formula 1 drafting game where players build an all-time team to simulate a flawless 24-0 season.",
+    tags: ["React", "Next.js", "TypeScript", "Neon PostgreSQL", "Prisma", "Tailwind CSS", "Python"],
+    liveUrl: "https://formula124-0.vercel.app/",
+    sourceUrl: "https://github.com/ekaanshp/F1-24-0",
+    icon: "🎮",
+  }
 ];
 
 /* ---------------------------------------------------------------------------
@@ -175,7 +184,7 @@ export default function Projects() {
         </motion.div>
 
         {/* === Project Cards Grid === */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
